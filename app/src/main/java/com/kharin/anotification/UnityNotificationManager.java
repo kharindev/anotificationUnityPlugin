@@ -75,6 +75,6 @@ public class UnityNotificationManager {
     }
 
     public static String GetParameter(Intent intent, String key){
-        return intent.hasExtra(key) ? intent.getStringExtra(key) : "empty";
+        return intent.hasExtra(key) && intent.getStringExtra(key) != null ? intent.getStringExtra(key) : "empty";
     }
 }

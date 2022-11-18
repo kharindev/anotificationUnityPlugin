@@ -2,6 +2,7 @@ package com.kharin.anotification;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 public class NotificationSettings {
     public Context context;
@@ -87,8 +88,9 @@ public class NotificationSettings {
                 '}';
     }
 
-    public NotificationSettings withActivityClass(String aClass) {
+    public NotificationSettings withActivityClass(String aClass, String defaultClass) {
         try {
+            if(aClass == null || aClass.isEmpty()) aClass = defaultClass;
             this.aClass = Class.forName(aClass);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

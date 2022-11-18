@@ -3,14 +3,13 @@ package com.kharin.anotification.alarm;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.kharin.anotification.NotificationSettings;
 import com.kharin.anotification.UnityNotificationManager;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
+    private static final String DefaultActivityClass = "com.google.firebase.MessagingUnityPlayerActivity";
     @Override
     public void onReceive(Context context, Intent intent) {
         String title = intent.hasExtra(UnityNotificationManager.TITLE_KEY) ? intent.getStringExtra(UnityNotificationManager.TITLE_KEY) : "Title";
@@ -28,7 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .withCode(code)
                 .withSmallIcon(smallIcon)
                 .withOpenParameter(openParameter)
-                .withActivityClass(aClass);
+                .withActivityClass(aClass,DefaultActivityClass);
 
         UnityNotificationManager.showNotification(settings);
     }
